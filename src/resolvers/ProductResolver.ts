@@ -26,12 +26,12 @@ export class ProductResolver {
     
 
 
-    // @FieldResolver()
-    // async productByCategories(@Root() parent: Product, @Ctx() ctx:Context): Promise<Category[]> {
-    //     return await ctx.prisma.product.findUnique({
-    //         where: {id: parent.id}
-    //     }).categories()  
-    // }
+    @FieldResolver((returns) => Product)
+    async productByCategories(@Root() parent: Product, @Ctx() ctx:Context): Promise<Category[]> {
+        return await ctx.prisma.product.findUnique({
+            where: {id: parent.id}
+        }).categories()  
+    }
 
     @Query((returns) => [Product])
     async allProducts(@Ctx() ctx: Context) {

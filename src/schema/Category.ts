@@ -11,5 +11,5 @@ export class Category {
     name: string | null
 
     @Field((type) => [Product], {nullable: true})
-    products?: Product[] | null
+    products?: [Product] | null
 }
