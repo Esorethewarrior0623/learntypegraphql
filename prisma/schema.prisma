@@ -42,11 +42,11 @@ model User {
   password String
   products Product[]
   categories Category[]
-  ProductSale ProductSale[]
+  productSale ProductSale[]
   
 
   messages Chat[]
-  Chat Chat[]  @relation("RecieverOfChat")
+  chats Chat[]  @relation("RecieverOfChat")
   
   
 }
