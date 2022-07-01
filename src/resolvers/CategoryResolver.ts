@@ -16,12 +16,12 @@ export class CategoryCreateInput {
 @Resolver(Category)
 export class CategoryResolver {
 
-    @FieldResolver()
-    async products(@Root() category: Category, @Ctx() ctx: Context): Promise<Category | undefined> {
-      return (await ctx.prisma.product.findUnique({
-        where: {id: category.id}
-      }).products())
-    }
+    // @FieldResolver()
+    // async products(@Root() category: Category, @Ctx() ctx: Context): Promise<Category | undefined> {
+    //   return (await ctx.prisma.product.findUnique({
+    //     where: {id: category.id}
+    //   }).products())
+    // }
 
     @Query((returns) => [Category])
     async allCategories(@Ctx() ctx: Context) {

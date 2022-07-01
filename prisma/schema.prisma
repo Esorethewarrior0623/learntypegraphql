@@ -17,8 +17,8 @@ model Product {
   ingredients String[]
   moveActive  Boolean    @default(false)
   price       Float
-  //userId String?
-  //User   User @relation(fields: [userId], references:[id])
+  userId String?
+  User   User? @relation(fields: [userId], references:[id])
   categories    Category[]
 
 }
@@ -28,19 +28,24 @@ model Category {
   createdAt DateTime  @default(now())
   name      String
   products   Product[]
-  //userId String?
-  //User   User @relation(fields: [userId], references:[id])
+  userId String?
+  User   User? @relation(fields: [userId], references:[id])
 }
 
 
 
-// model User {
-//   id String @id @default(uuid())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime 
-//   name String
-//   email String
-//   products Product[]
-//   categories Category[]
-//   //have user related ID here
-// }
+model User {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime 
+  name String
+  email String
+  password String
+  products Product[]
+  categories Category[]
+  
+}
+
+//model Customer {
+//
+//}
