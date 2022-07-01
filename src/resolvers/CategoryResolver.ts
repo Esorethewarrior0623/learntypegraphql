@@ -17,7 +17,7 @@ export class CategoryCreateInput {
 export class CategoryResolver {
 
     // @FieldResolver()
-    // async products(@Root() category: Category, @Ctx() ctx: Context): Promise<Category | undefined> {
+    // async categoryByProduct(@Root() category: Category, @Ctx() ctx: Context): Promise<Category | undefined> {
     //   return (await ctx.prisma.product.findUnique({
     //     where: {id: category.id}
     //   }).products())
