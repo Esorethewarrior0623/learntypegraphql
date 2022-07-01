@@ -27,8 +27,8 @@ export class ProductResolver {
 
 
     // @FieldResolver()
-    // async categories(@Root() parent: Product, @Ctx() ctx:Context): Promise<Category[]> {
-    //     return await ctx.prisma.category.findUnique({
+    // async productByCategories(@Root() parent: Product, @Ctx() ctx:Context): Promise<Category[]> {
+    //     return await ctx.prisma.product.findUnique({
     //         where: {id: parent.id}
     //     }).categories()  
     // }

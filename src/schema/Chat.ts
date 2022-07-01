@@ -7,7 +7,19 @@ export class Chat {
     @Field((type) => ID)
     id: string
 
-    @Field((type) => String)
-    name: string | null
+    @Field((type) => ID)
+    reciverId: string | null
 
+    @Field((type) => ID)
+    senderId: string | null
+
+    @Field((type) => User, {nullable: true})
+    reciever?: User | null
+
+    @Field((type) => User, {nullable: true})
+    sender?: User | null
+
+    @Field()
+    message: string | null
+    
 }
