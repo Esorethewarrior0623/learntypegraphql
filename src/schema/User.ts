@@ -12,10 +12,10 @@ export class User {
     @Field((type) => String)
     name: string
 
-    @Field((type) => ID)
+    @Field((type) => String)
     email: string
 
-    @Field((type) => ID)
+    @Field((type) => String)
     password: string
 
     @Field((type) => [Category], {nullable: true})
