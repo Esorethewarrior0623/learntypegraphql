@@ -8,6 +8,7 @@ import {User} from '../schema/User';
 
 @InputType()
 //This is what a full User should have access to
+//This requires the full schema of the User
 export class CreateUserInput {
     @Field((type) => ID)
     id: string
