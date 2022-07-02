@@ -65,7 +65,7 @@ export class ProductResolver {
         return ctx.prisma.product.findUnique({
             where: {
                 id: productUniqueInput.id || undefined,
-                name: productUniqueInput.name || undefined,
+                // name: productUniqueInput.name || undefined,
             }
         }).categories()
     }
