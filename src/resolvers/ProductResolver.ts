@@ -57,15 +57,22 @@ export class ProductResolver {
         })
     }
 
+    @Query((returns) => Product)
+    async productByName(@Arg('name') name: string, @Ctx() ctx: Context){
+        return ctx.prisma.product.findFirst({
+            where: {name}
+        })
+    }
+
 
     //Fix this: https://github.com/prisma/prisma-examples/blob/latest/typescript/graphql-typegraphql/src/UserResolver.ts At the bottom
    //I think this is right, I just have to connect the categories to it.
     @Query((returns) => [Category], {nullable: true})
     async categoriesById(@Arg('productUniqueInput') productUniqueInput:ProductUniqueInput, @Ctx() ctx: Context) {
-        return ctx.prisma.product.findUnique({
+        return ctx.prisma.product.findFirst({
             where: {
                 id: productUniqueInput.id || undefined,
-                // name: productUniqueInput.name || undefined,
+                name: productUniqueInput.name || undefined,
             }
         }).categories()
     }
@@ -79,8 +86,8 @@ export class ProductResolver {
         return ctx.prisma.product.create({
             data: {
                 name: data.name,
-                description: data. description,
-                ingredients: data. ingredients,
+                description: data.description,
+                ingredients: data.ingredients,
                 moveActive: data.moveActive,
                 price: data.price,
 

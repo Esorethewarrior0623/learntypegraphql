@@ -18,7 +18,7 @@ model Product {
   price       Float
   userId String?
   User   User? @relation(fields: [userId], references:[id])
-  categories    Category[]
+  categories    Category[] 
 
 }
 
@@ -26,29 +26,29 @@ model Category {
   id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
   name      String
-  products   Product[]
+  products   Product[] 
   userId String?
   User   User? @relation(fields: [userId], references:[id])
 }
 
 
+//  
+
 
 model User {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
-  updatedAt DateTime 
+  updatedAt   DateTime   @updatedAt
   name String
   email String
   password String
   products Product[]
   categories Category[]
   productSale ProductSale[]
-  
-
   messages Chat[]
   chats Chat[]  @relation("RecieverOfChat")
-  
-  
+  // move MoveRoom @relation(fields: [moveId], references:[id])
+  // moveId String
 }
 
 
@@ -67,6 +67,11 @@ updatedAt DateTime  @updatedAt
 //
 //}
 
+// model Room {
+//   id String @id @default(uuid())
+
+// }
+
 model ProductSale {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
@@ -77,12 +82,15 @@ model ProductSale {
 
 }
 
-model Move {
-  id String @id        @default(uuid())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+// model MoveRoom {
+//   id String @id        @default(uuid())
+//   createdAt DateTime   @default(now())
+//   updatedAt DateTime   @updatedAt
+//   users User[] 
+//   usersId String[]
+
   
-}
+// }
 
 
 

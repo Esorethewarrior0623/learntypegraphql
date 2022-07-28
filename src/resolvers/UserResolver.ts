@@ -1,9 +1,10 @@
 import 'reflect-metadata';
-import {Resolver,Query,Mutation,Arg,Ctx,FieldResolver,Root,Int,InputType,Field, ID} from 'type-graphql'
+import {Query,Mutation,Arg,Ctx,FieldResolver,Root,Int,InputType,Field, ID, Resolver} from 'type-graphql'
 import {Context} from "../../context";
 import {Category} from "../schema/Category"
 import { Product } from '../schema/Product';
 import {User} from '../schema/User';
+import {Chat} from '../schema/Chat';
 
 
 @InputType()
@@ -16,6 +17,13 @@ export class CreateUserInput {
     @Field((type) => String)
     name: string
 
+    @Field((type) => String)
+    email: string
+
+    @Field((type) => String)
+    password: string
+    
+
 
 }
 //Is this means of unique Querying?
@@ -25,9 +33,40 @@ export class UserUniqueInput {
     @Field((type) => ID)
     id: string
 
-    @Field((type) => String)
+    @Field({nullable: true})
     email: string
 }
+
+@Resolver(User)
+export class UserResolver {
+
+    //return all Users
+    @Query((returns) => [User]) 
+    async allUsers(@Ctx() ctx: Context) {
+        return ctx.prisma.user.findMany()
+    }
+
+    //return User based by Id
+    @Query((returns) => User)
+    async productById(@Arg('id') id:string, @Ctx() ctx: Context) {
+        return ctx.prisma.user.findUnique({
+            where: {id}
+        })
+    }
+
+    //create a new User
+    @Mutation((returns) => User)
+    async createUser(@Arg('data') data:CreateUserInput, @Ctx() ctx: Context) {
+       return ctx.prisma.user.create({
+        data: {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            
+        }
+       })
+    }
+} 
 
 
 

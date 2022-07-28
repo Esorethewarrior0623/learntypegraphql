@@ -6,12 +6,14 @@ import { context } from '../context'
 import { GraphQLScalarType } from 'graphql'
 import { CategoryResolver } from "./resolvers/CategoryResolver";
 import {ProductResolver } from "./resolvers/ProductResolver"
+import {UserResolver } from "./resolvers/UserResolver"
+import {ChatResolver} from "./resolvers/ChatResolver"
 
 const app = async () => {
   
   
     const schema = await tq.buildSchema({
-      resolvers: [CategoryResolver, ProductResolver],
+      resolvers: [CategoryResolver, ProductResolver, UserResolver, ChatResolver],
       scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }],
     })
   

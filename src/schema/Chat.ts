@@ -19,7 +19,7 @@ export class Chat {
     @Field((type) => User, {nullable: true})
     sender?: User | null
 
-    @Field()
+    @Field((type) => String)
     message: string | null
     
 }
