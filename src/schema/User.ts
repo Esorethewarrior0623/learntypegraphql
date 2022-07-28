@@ -10,10 +10,10 @@ export class User {
     id: string
 
     @Field((type) => String)
-    name: string
+    name: string 
 
     @Field((type) => String)
-    email: string
+    email: string 
 
     @Field((type) => String)
     password: string

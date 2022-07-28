@@ -8,7 +8,7 @@ export class Chat {
     id: string
 
     @Field((type) => ID)
-    reciverId: string | null
+    receiverId: string | null
 
     @Field((type) => ID)
     senderId: string | null

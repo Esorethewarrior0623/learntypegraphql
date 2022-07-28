@@ -14,7 +14,7 @@ export class Product {
     description:string | null
 
     @Field((type) => [String], {nullable: true})
-    ingredients:[string] | null
+    ingredients:string[] | null
 
     @Field((type) => Boolean)
     moveActive:boolean | null

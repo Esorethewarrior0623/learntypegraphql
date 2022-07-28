@@ -8,20 +8,18 @@ import { Product } from '../schema/Product';
 //this is in the input for Mutations
 export class CategoryCreateInput {
     @Field()
-    name: string
-
-   
+    name: string 
 }
 
 @Resolver(Category)
 export class CategoryResolver {
 
-    // @FieldResolver(returns => Category)
-    // async categoryByProducts(@Root() parent: Category, @Ctx() ctx:Context): Promise<Product[]> {
-    //     return await ctx.prisma.category.findUnique({
-    //         where: {id: parent.id}
-    //     }).products()  
-    // }
+    @FieldResolver(returns => Category)
+    async categoryByProducts(@Root() parent: Category, @Ctx() ctx:Context): Promise<Product[]> {
+        return await ctx.prisma.category.findUnique({
+            where: {id: parent.id}
+        }).products()  
+    }
 
     @Query((returns) => [Category])
     async allCategories(@Ctx() ctx: Context) {

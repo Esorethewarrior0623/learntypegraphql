@@ -40,6 +40,21 @@ export class UserUniqueInput {
 @Resolver(User)
 export class UserResolver {
 
+    //create relation between User and their unique Products
+    @FieldResolver((returns) => User)
+    async products(@Root() parent: User, @Ctx() ctx: Context): Promise<Product[]> {
+        return await ctx.prisma.user.findUnique({
+            where: {id: parent.id}
+        }).products()
+    }
+    //Issue on this relation
+    @FieldResolver((returns) => User)
+    async chats(@Root() parent: User, @Ctx() ctx: Context): Promise<Chat[]> {
+        return await ctx.prisma.user.findUnique({
+            where: {id: parent.id}
+        }).chats()
+    }
+
     //return all Users
     @Query((returns) => [User]) 
     async allUsers(@Ctx() ctx: Context) {
@@ -48,7 +63,7 @@ export class UserResolver {
 
     //return User based by Id
     @Query((returns) => User)
-    async productById(@Arg('id') id:string, @Ctx() ctx: Context) {
+    async userById(@Arg('id') id:string, @Ctx() ctx: Context) {
         return ctx.prisma.user.findUnique({
             where: {id}
         })
