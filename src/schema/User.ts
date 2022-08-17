@@ -9,14 +9,17 @@ export class User {
     @Field((type) => ID)
     id: string
 
-    @Field((type) => String)
-    name: string 
+    @Field((type) => String)    
+    name: string | null
 
     @Field((type) => String)
-    email: string 
+    email: string |null
 
     @Field((type) => String)
-    password: string
+    password: string | null
+
+    @Field((type) => String, {nullable: true})
+    token: string | null
 
     @Field((type) => [Category], {nullable: true})
     categories?: [Category] | null
