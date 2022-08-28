@@ -32,10 +32,10 @@ export class RegisterInput {
 }
 @InputType()
 export class LoginUserInput {
-    @Field((type) => ID)
+    @Field()
     email: string
 
-    @Field((type) => String)
+    @Field()
     password: string
 
     
